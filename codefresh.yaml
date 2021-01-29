@@ -28,9 +28,10 @@ steps:
     description: Build the image
     type: build
     stage: build
-    image_name: phil_zona/test_app
-    tag: ${{CF_BUILD_ID}}
-    disable_push: true
+    arguments:
+      image_name: phil_zona/test_app
+      tag: ${{CF_BUILD_ID}}
+      disable_push: true
     when:
       branch:
         only: [main]
