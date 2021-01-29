@@ -9,4 +9,4 @@ app.get('/', (req, res) => {
   });
 });
 
-app.listen(config.port, () => console.log('Running...'));
+app.listen(config.port, config.host, () => console.log('Running...'));
