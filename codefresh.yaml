@@ -1,0 +1,49 @@
+version: 1.0
+stages:
+  - clone
+  - test
+  - build
+
+steps:
+  clone:
+    title: Clone
+    description: Clones the git repo
+    type: git-clone
+    stage: clone
+    repo: philzona/test_app
+    git: github-cf
+
+  test:
+    title: Unit tests
+    description: Execute unit tests
+    type: freestyle
+    stage: test
+    image: alpine:latest
+    working_directory: ${{clone}}
+    commands:
+      - exit 0 # Replace with real tests
+
+  build:
+    title: Build
+    description: Build the image
+    type: build
+    image_name: phil_zona/test_app
+    tag: ${{CF_SHORT_REVISION}}
+    when:
+      branch:
+        only: [main]
+
+  push:
+    title: Push
+    description: Pushes the built image
+    type: push
+    stage: build
+    candidate: ${{build}}
+    image_name: phil_zona/test_app
+    registry: quay
+    tags:
+      - ${{CF_SHORT_REVISION}}
+      - latest
+    when:
+      branch:
+        only: [main]
