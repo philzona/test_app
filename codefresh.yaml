@@ -33,7 +33,7 @@ steps:
       branch:
         only: [main]
 
-  push:
+  push_to_quay:
     title: Push
     description: Pushes the built image
     type: push
