@@ -27,7 +27,7 @@ steps:
     title: Build
     description: Build the image
     type: build
-    image_name: phil_zona/test_app
+    image_name: test_app
     tag: ${{CF_SHORT_REVISION}}
     when:
       branch:
