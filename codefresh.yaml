@@ -23,7 +23,7 @@ steps:
     commands:
       - exit 0 # Replace with real tests
 
-  build:
+  build_image:
     title: Build
     description: Build the image
     type: build
