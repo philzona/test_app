@@ -12,6 +12,7 @@ steps:
     stage: clone
     repo: philzona/test_app
     git: github-cf
+    revision: ${{CF_REVISION}}
 
   test:
     title: Unit tests
