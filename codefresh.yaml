@@ -28,10 +28,12 @@ steps:
     description: Build the image
     type: build
     stage: build
+    working_directory: ${{clone}}
     arguments:
-      image_name: phil_zona/test_app
-      tag: ${{CF_BUILD_ID}}
+      image_name: 'phil_zona/test_app'
+      tag: '${{CF_BUILD_ID}}'
       disable_push: true
+      registry: quay
     when:
       branch:
         only: [main]
@@ -41,8 +43,8 @@ steps:
     description: Pushes the built image
     type: push
     stage: build
-    candidate: ${{build}}
-    image_name: phil_zona/test_app
+    candidate: '${{build}}'
+    image_name: 'phil_zona/test_app'
     registry: quay
     tags:
       - ${{CF_BUILD_ID}}
